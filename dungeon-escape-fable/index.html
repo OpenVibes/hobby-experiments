@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dungeon Escape</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="frame" id="frame">
+    <header class="hud" aria-label="Status">
+      <div class="stat">
+        <span class="label">HP</span>
+        <span id="hp" class="hearts" aria-label="Hit points"></span>
+      </div>
+      <div class="stat">
+        <span class="label">FLOOR</span>
+        <span id="floor" class="value">1 / 5</span>
+      </div>
+      <div class="stat">
+        <span class="label">KEY</span>
+        <span id="key" class="key" aria-label="Key"></span>
+      </div>
+      <div class="stat">
+        <span class="label">COINS</span>
+        <span id="coins" class="value">0</span>
+      </div>
+      <div class="stat">
+        <span class="label">TIME</span>
+        <span id="time" class="value">00:00</span>
+      </div>
+      <div class="stat">
+        <span class="label">SCORE</span>
+        <span id="score" class="value">0</span>
+      </div>
+    </header>
+
+    <div class="stage">
+      <canvas id="game" width="800" height="576"></canvas>
+
+      <div id="messages" class="messages" aria-live="polite"></div>
+
+      <div id="overlay" class="overlay hidden">
+        <div class="overlay-inner">
+          <h1 id="overlay-title"></h1>
+          <p id="overlay-body" class="overlay-body"></p>
+          <p id="overlay-hint" class="overlay-hint"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <p class="controls">Arrows / WASD move &middot; walk into an enemy to attack &middot; P or Esc pause &middot; Enter or Space start</p>
+
+  <script src="js/config.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/entities.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Dungeon Escape: a turn-based browser dungeon crawler. Find the key, open the door, and escape from floor 5.">
+  <title>Dungeon Escape</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+
+    <header class="hud" aria-label="Player status">
+      <div class="hp">
+        <span class="hp-label">HP</span>
+        <div class="hp-bar" role="meter" aria-label="Health">
+          <div id="hud-hp-fill" class="hp-fill" style="width: 100%"></div>
+        </div>
+        <span id="hud-hp-text" class="hp-text">20 / 20</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><span class="stat-label">Floor</span><span id="hud-floor" class="stat-value">1 / 5</span></div>
+        <div class="stat"><span class="stat-label">Gold</span><span id="hud-gold" class="stat-value">0</span></div>
+        <div class="stat"><span class="stat-label">Keys</span><span id="hud-keys" class="stat-value">0</span></div>
+        <div class="stat"><span class="stat-label">ATK</span><span id="hud-atk" class="stat-value">3</span></div>
+        <div class="stat"><span class="stat-label">DEF</span><span id="hud-def" class="stat-value">0</span></div>
+        <div class="stat"><span class="stat-label">Turns</span><span id="hud-turns" class="stat-value">0</span></div>
+        <div class="stat"><span class="stat-label">Kills</span><span id="hud-kills" class="stat-value">0</span></div>
+      </div>
+
+      <button id="btn-mute" class="btn-icon" type="button" title="Mute sound (M)" aria-label="Mute sound">🔊</button>
+    </header>
+
+    <div class="stage">
+      <canvas id="game-canvas" width="800" height="544" aria-label="Dungeon view"></canvas>
+
+      <!-- Title screen -->
+      <div class="overlay" id="overlay-title">
+        <div class="panel">
+          <h1 class="game-title">DUNGEON ESCAPE</h1>
+          <p class="tagline">Five floors. One way out.</p>
+          <ul class="howto">
+            <li>Move with <kbd>Arrows</kbd> or <kbd>WASD</kbd>. On touch screens use the D-pad.</li>
+            <li>Bump into an enemy to attack it.</li>
+            <li>Find the <b>key</b> on each floor to open the locked door.</li>
+            <li>Take the <b>stairs</b> down to the next floor.</li>
+            <li>Reach the <b>exit portal</b> on floor 5 to escape.</li>
+            <li><kbd>Space</kbd> or <kbd>.</kbd> waits a turn. <kbd>M</kbd> mutes the sound.</li>
+          </ul>
+          <p class="best">Best: <span id="best-score">0</span></p>
+          <button id="btn-start" class="btn btn-primary" type="button">Start Run</button>
+        </div>
+      </div>
+
+      <!-- Death screen -->
+      <div class="overlay hidden" id="overlay-dead">
+        <div class="panel">
+          <h2 class="overlay-heading bad">You Died</h2>
+          <div id="dead-stats" class="stats-box"></div>
+          <button id="btn-retry" class="btn btn-primary" type="button">Try Again</button>
+        </div>
+      </div>
+
+      <!-- Victory screen -->
+      <div class="overlay hidden" id="overlay-win">
+        <div class="panel">
+          <h2 class="overlay-heading good">You Escaped!</h2>
+          <div id="win-stats" class="stats-box"></div>
+          <button id="btn-again" class="btn btn-primary" type="button">Play Again</button>
+        </div>
+      </div>
+
+      <!-- Floor banner (does not block input) -->
+      <div class="overlay overlay-banner hidden" id="overlay-floor" aria-live="polite">
+        <div class="banner"><span id="floor-banner-text">Floor 1</span></div>
+      </div>
+    </div>
+
+    <section class="log-panel" aria-label="Message log">
+      <h2 class="panel-title">Log</h2>
+      <ul id="log" class="log"></ul>
+    </section>
+
+    <nav id="dpad" class="dpad" aria-label="Touch controls">
+      <button type="button" data-dir="up" aria-label="Move up">&#9650;</button>
+      <button type="button" data-dir="left" aria-label="Move left">&#9664;</button>
+      <button type="button" data-dir="wait" aria-label="Wait a turn">WAIT</button>
+      <button type="button" data-dir="right" aria-label="Move right">&#9654;</button>
+      <button type="button" data-dir="down" aria-label="Move down">&#9660;</button>
+    </nav>
+
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/dungeon.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
